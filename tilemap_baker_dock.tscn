@@ -1,0 +1,103 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4fnv06e6xhp0"]
+
+[ext_resource type="Script" uid="uid://o5pxhdebnjs0" path="res://addons/tilemap_baker/tilemap_baker_dock.gd" id="1_yjnqm"]
+
+[node name="TileMapBakerDock" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yjnqm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "TileMap Baker"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TileMapPathContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TileMapPathContainer"]
+layout_mode = 2
+text = "TileMap Node"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TileMapPathContainer"]
+layout_mode = 2
+
+[node name="TileMapPath" type="LineEdit" parent="VBoxContainer/TileMapPathContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Select a TileMap or TileMapLayer node"
+editable = false
+
+[node name="SelectNodeButton" type="Button" parent="VBoxContainer/TileMapPathContainer/HBoxContainer"]
+layout_mode = 2
+text = "Select Node"
+
+[node name="LayerContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/LayerContainer"]
+layout_mode = 2
+text = "Layer Index"
+
+[node name="LayerSpinBox" type="SpinBox" parent="VBoxContainer/LayerContainer"]
+layout_mode = 2
+min_value = -1.0
+rounded = true
+
+[node name="OutputPathContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/OutputPathContainer"]
+layout_mode = 2
+text = "Output Settings"
+
+[node name="FolderPathLabel" type="Label" parent="VBoxContainer/OutputPathContainer"]
+layout_mode = 2
+text = "Folder: res://"
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OutputPathContainer"]
+layout_mode = 2
+
+[node name="OutputPath" type="LineEdit" parent="VBoxContainer/OutputPathContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "baked_tilemap"
+placeholder_text = "Enter filename (without extension)"
+
+[node name="BrowseButton" type="Button" parent="VBoxContainer/OutputPathContainer/HBoxContainer"]
+layout_mode = 2
+text = "Select Folder"
+
+[node name="FileExtensionLabel" type="Label" parent="VBoxContainer/OutputPathContainer"]
+layout_mode = 2
+text = "File will be saved as .png"
+horizontal_alignment = 1
+
+[node name="BakeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Bake TileMap to Sprite"
+
+[node name="StatusLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Ready"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
