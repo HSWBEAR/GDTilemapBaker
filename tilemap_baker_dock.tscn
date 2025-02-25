@@ -11,93 +11,112 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yjnqm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HeaderContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 16
 text = "TileMap Baker"
-horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TileMapPathContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="MainContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 15
 
-[node name="Label" type="Label" parent="VBoxContainer/TileMapPathContainer"]
+[node name="TileMapPathContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MainContainer/TileMapPathContainer"]
 layout_mode = 2
 text = "TileMap Node"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TileMapPathContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MainContainer/TileMapPathContainer"]
 layout_mode = 2
 
-[node name="TileMapPath" type="LineEdit" parent="VBoxContainer/TileMapPathContainer/HBoxContainer"]
+[node name="TileMapPath" type="LineEdit" parent="MarginContainer/VBoxContainer/MainContainer/TileMapPathContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Select a TileMap or TileMapLayer node"
 editable = false
 
-[node name="SelectNodeButton" type="Button" parent="VBoxContainer/TileMapPathContainer/HBoxContainer"]
+[node name="SelectNodeButton" type="Button" parent="MarginContainer/VBoxContainer/MainContainer/TileMapPathContainer/HBoxContainer"]
 layout_mode = 2
 text = "Select Node"
 
-[node name="LayerContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="LayerContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/LayerContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MainContainer/LayerContainer"]
 layout_mode = 2
 text = "Layer Index"
 
-[node name="LayerSpinBox" type="SpinBox" parent="VBoxContainer/LayerContainer"]
+[node name="LayerSpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/MainContainer/LayerContainer"]
 layout_mode = 2
 min_value = -1.0
 rounded = true
 
-[node name="OutputPathContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="OutputPathContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/OutputPathContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MainContainer/OutputPathContainer"]
 layout_mode = 2
 text = "Output Settings"
 
-[node name="FolderPathLabel" type="Label" parent="VBoxContainer/OutputPathContainer"]
+[node name="FolderPathLabel" type="Label" parent="MarginContainer/VBoxContainer/MainContainer/OutputPathContainer"]
 layout_mode = 2
 text = "Folder: res://"
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OutputPathContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MainContainer/OutputPathContainer"]
 layout_mode = 2
 
-[node name="OutputPath" type="LineEdit" parent="VBoxContainer/OutputPathContainer/HBoxContainer"]
+[node name="OutputPath" type="LineEdit" parent="MarginContainer/VBoxContainer/MainContainer/OutputPathContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "baked_tilemap"
 placeholder_text = "Enter filename (without extension)"
 
-[node name="BrowseButton" type="Button" parent="VBoxContainer/OutputPathContainer/HBoxContainer"]
+[node name="BrowseButton" type="Button" parent="MarginContainer/VBoxContainer/MainContainer/OutputPathContainer/HBoxContainer"]
 layout_mode = 2
 text = "Select Folder"
 
-[node name="FileExtensionLabel" type="Label" parent="VBoxContainer/OutputPathContainer"]
+[node name="ActionContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainContainer"]
+layout_mode = 2
+
+[node name="FileExtensionLabel" type="Label" parent="MarginContainer/VBoxContainer/MainContainer/ActionContainer"]
 layout_mode = 2
 text = "File will be saved as .png"
 horizontal_alignment = 1
 
-[node name="BakeButton" type="Button" parent="VBoxContainer"]
+[node name="BakeButton" type="Button" parent="MarginContainer/VBoxContainer/MainContainer/ActionContainer"]
 layout_mode = 2
 text = "Bake TileMap to Sprite"
 
-[node name="StatusLabel" type="Label" parent="VBoxContainer"]
+[node name="StatusContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Ready"
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+[node name="StatusLabel" type="Label" parent="MarginContainer/VBoxContainer/StatusContainer"]
 layout_mode = 2
+text = "Node selected: TileMapLayer"

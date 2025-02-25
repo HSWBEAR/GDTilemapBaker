@@ -24,15 +24,15 @@ var node_tree: Tree
 
 func _ready():
 	# Get UI elements
-	tilemap_path_edit = $VBoxContainer/TileMapPathContainer/HBoxContainer/TileMapPath
-	select_node_button = $VBoxContainer/TileMapPathContainer/HBoxContainer/SelectNodeButton
-	layer_spinbox = $VBoxContainer/LayerContainer/LayerSpinBox
-	output_path_edit = $VBoxContainer/OutputPathContainer/HBoxContainer/OutputPath
-	browse_button = $VBoxContainer/OutputPathContainer/HBoxContainer/BrowseButton
-	bake_button = $VBoxContainer/BakeButton
-	status_label = $VBoxContainer/StatusLabel
-	folder_path_label = $VBoxContainer/OutputPathContainer/FolderPathLabel
-	filename_edit = $VBoxContainer/OutputPathContainer/HBoxContainer/OutputPath
+	tilemap_path_edit = $MarginContainer/VBoxContainer/MainContainer/TileMapPathContainer/HBoxContainer/TileMapPath
+	select_node_button = $MarginContainer/VBoxContainer/MainContainer/TileMapPathContainer/HBoxContainer/SelectNodeButton
+	layer_spinbox = $MarginContainer/VBoxContainer/MainContainer/LayerContainer/LayerSpinBox
+	output_path_edit = $MarginContainer/VBoxContainer/MainContainer/OutputPathContainer/HBoxContainer/OutputPath
+	browse_button = $MarginContainer/VBoxContainer/MainContainer/OutputPathContainer/HBoxContainer/BrowseButton
+	bake_button = $MarginContainer/VBoxContainer/MainContainer/ActionContainer/BakeButton
+	status_label = $MarginContainer/VBoxContainer/StatusContainer/StatusLabel
+	folder_path_label = $MarginContainer/VBoxContainer/MainContainer/OutputPathContainer/FolderPathLabel
+	filename_edit = $MarginContainer/VBoxContainer/MainContainer/OutputPathContainer/HBoxContainer/OutputPath
 	
 	# Connect signals
 	select_node_button.pressed.connect(_on_select_node_button_pressed)
@@ -47,6 +47,9 @@ func _ready():
 	
 	# Create node selection dialog
 	_create_node_selection_dialog()
+	
+	# Initialize status
+	_show_status("Ready", false)
 
 # Set the editor interface reference
 func setup(editor_interface_ref: EditorInterface):
@@ -154,7 +157,7 @@ func _on_node_selected():
 		tilemap_path_edit.text = edited_scene_root.get_path_to(node)
 	
 	# Update layer spinbox visibility
-	$VBoxContainer/LayerContainer.visible = is_tilemap
+	$MarginContainer/VBoxContainer/MainContainer/LayerContainer.visible = is_tilemap
 	
 	# If it's a TileMapLayer, try to find its layer index
 	if is_tilemap_layer:
@@ -444,7 +447,7 @@ func select_node(node: Node):
 		tilemap_path_edit.text = edited_scene_root.get_path_to(node)
 	
 	# Update layer spinbox visibility
-	$VBoxContainer/LayerContainer.visible = is_tilemap
+	$MarginContainer/VBoxContainer/MainContainer/LayerContainer.visible = is_tilemap
 	
 	# If it's a TileMapLayer, try to find its layer index
 	if is_tilemap_layer:
